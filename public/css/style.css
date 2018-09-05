@@ -1,0 +1,13 @@
+span.count {
+  font-size: 10em;
+  background: black;
+  float: right;
+}
+body{
+
+background: url("https://upload.wikimedia.org/wikipedia/commons/d/d2/Internet_map_1024.jpg");
+}
+#greetOutput {
+  text-transform: capitalize;
+  font-size: 50px;
+}

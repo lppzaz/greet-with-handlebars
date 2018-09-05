@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+
+    <div class="twelve columns">
+      <h1>Language Greeting<label class=""></h1>
+      <hr>
+      <p id='greetOutput'>{{greeting}}</p>
+      <form action="/greet" method="post">
+        <h5 class='animated flip'>Please enter your name:</h5><input name="name" type="text" class="Greetbox"><br>
+        <div>
+          <label class='animated swing' class="">
+            <input type="radio" name="Language" class="Ln" value="English">
+            <span class="label-body">English</span>
+          </label>
+          <label class='animated shake' class="">
+            <input type="radio" name="Language" class="Ln" value="Afrikaans">
+            <span class="label-body">Afrikaans</span>
+          </label>
+          <label class='animated shake' class="">
+            <input type="radio" name="Language" class="Ln" value="Xhosa">
+            <span class="label-body">IsiXhosa</span>
+        </div>
+        <button class="button-primary greetBtn" type="submit" name="button">Greet Me!</button>
+      </form>
+      <button class="button-primary resetBtn" name="button" onclick="reset()">Reset</button>
+      <label class="">
+      </label>
+      <span class="count">{{counter}}</span>
+      </label>
