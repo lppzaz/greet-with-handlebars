@@ -16,13 +16,13 @@ module.exports = function () {
       map[name] = 0;
     }
     if (checkedLanguage === "English") {
-      return "Hello " + name;
+      return "Howdy " + name + ' <3';
     }
     if (checkedLanguage === "Xhosa") {
-      return "Molo " + name;
+      return "Molo " + name+' <3';
     }
     if (checkedLanguage === "Afrikaans") {
-      return "Goeie dag " + name;
+      return "Goeiedag " + name +' <3';
     }
   }
 

@@ -1,13 +1,22 @@
 span.count {
-  font-size: 10em;
-  background: black;
+  font-size: 7em;
+  margin: 5px;
   float: right;
+  
+  
+}
+
+.greetBtn{
+  margin-right: 5px;
 }
 body{
-
+  text-shadow: 1px 1px 2px black, 0 0 5px darkblue;
 background: url("https://upload.wikimedia.org/wikipedia/commons/d/d2/Internet_map_1024.jpg");
 }
 #greetOutput {
   text-transform: capitalize;
   font-size: 50px;
 }
+
+
+
