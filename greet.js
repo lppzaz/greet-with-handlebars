@@ -3,7 +3,7 @@ module.exports = function (pool) {
   var map = {};
 
   async function counter() {
-    
+
     const names = await pool.query('select * from users');
     return names.rowCount;
 
@@ -19,21 +19,22 @@ module.exports = function (pool) {
   async function greetMe(name, checkedLanguage) {
     name = name.toLowerCase();
     const foundUser = await pool.query('select * from users where name=$1', [name]);
-    
-    if (foundUser.rowCount < 1) {
 
-      await pool.query('insert into users(name,counter) values($1, 0)',[name]);
-      }
+    if (foundUser.rowCount < 1) {
+      await pool.query('insert into users(name,counter) values($1, 0)', [name]);
+    }
+
+await pool.query('UPDATE users SET counter=counter+1 WHERE name=$1', [name]);
     if (checkedLanguage === "English") {
       return "Howdy " + name + ' <3';
     }
     if (checkedLanguage === "Xhosa") {
-      return "Molo " + name+' <3';
+      return "Molo " + name + ' <3';
     }
     if (checkedLanguage === "Afrikaans") {
-      return "Goeiedag " + name +' <3';
+      return "Goeiedag " + name + ' <3';
+    }
   }
-}
 
   async function clear() {
     const reset = await pool.query('delete from users');
