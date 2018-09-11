@@ -19,7 +19,8 @@ background: url("https://upload.wikimedia.org/wikipedia/commons/d/d2/Internet_ma
 }
 
 p{
-  font-size: 55px;
+  font-size: 45px;
+  text-transform: uppercase;
 }
 
 

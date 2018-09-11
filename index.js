@@ -25,13 +25,15 @@ useSSL = true;
 const connectionString = process.env.DATABASE_URL ||'postresql://cobus:cobus123@localhost:5432/greetings'
 //triggering database request actions(open connection to db)
 const pool = new Pool({
-    //local environment only:
+   
+    connectionString,
+    ssl: useSSL
+
+     //local environment only:
     //connectionString:'postresql://Cobus:Cobus123@@localhost:5432/greetings'
     // ssl: false
 
     //deployment ready environment(local+remote)
-    connectionString,
-    ssl: useSSL
 })
 
 app.set('view engine', 'handlebars');
@@ -39,6 +41,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
+
 const greeter = greetMe(pool)
 
 // home route
@@ -66,10 +69,14 @@ app.post ('/greet', async function(req,res){
     })
 });
 
+//reset route
+
 app.get('/reset', function(req,res){
     greeter.clear()
     res.redirect("/")
 });
+
+// who was greeted route
 
 app.get('/greetingz', async function(req,res){
     try {
