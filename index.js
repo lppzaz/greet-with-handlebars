@@ -73,9 +73,11 @@ app.get('/reset', function(req,res){
 
 app.get('/greetingz', async function(req,res){
     try {
+        var counter = await greeter.counter()
+        console.log (counter)
         res.render('greeted',{
             greetingz:await greeter.nameMap()
-            
+         
         })
     } catch (err) {
         console.log(err.stack);
