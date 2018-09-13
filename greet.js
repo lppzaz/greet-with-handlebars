@@ -17,18 +17,20 @@ module.exports = function (pool) {
   }
 
   async function greetMe(name, checkedLanguage) {
+    
     name = name.toLowerCase();
+    if (name !== '' && checkedLanguage){
     const foundUser = await pool.query('select * from users where name=$1', [name]);
-
     if (foundUser.rowCount < 1) {
       await pool.query('insert into users(name,counter) values($1, 0)', [name]);
     }
+    await pool.query('UPDATE users SET counter=counter+1 WHERE name=$1', [name]);
+  }
 
-await pool.query('UPDATE users SET counter=counter+1 WHERE name=$1', [name]);
-    if (checkedLanguage === "English") {
+   if (name && checkedLanguage === "English") {
       return "Howdy " + name + ' <3';
     }
-    if (checkedLanguage === "Xhosa") {
+    if (name && checkedLanguage === "Xhosa") {
       return "Molo " + name + ' <3';
     }
     if (checkedLanguage === "Afrikaans") {

@@ -5,6 +5,8 @@ const pg = require('pg')
 const bodyParser = require('body-parser');
 const app = express();
 const greetMe = require('./greet');
+const flash = require('express-flash');
+const session = require('express-session');
 const PORT = process.env.PORT || 3100;
 
 app.use(express.static('public'));
@@ -16,6 +18,14 @@ app.engine('handlebars', exphbs({
         // }
     }
 }));
+app.use(session({
+    secret : "<add a secret string here>",
+    resave: false,
+    saveUninitialized: true
+  }));
+
+  // initialise the flash middleware
+  app.use(flash());
 //set up database requirements
 const Pool = pg.Pool;
 let useSSL = false;
@@ -62,7 +72,11 @@ app.get('/', async function (req, res) {
 app.post ('/greet', async function(req,res){
     let name = req.body.name;
     let lang = req.body.Language;
-
+    
+    if (name == '' && lang == undefined){
+        
+    req.flash('info', 'Please Enter name and Pick a language!');
+    }
     res.render('home',{
         greeting: await greeter.greetMe(name,lang),
         counter: await greeter.counter()
