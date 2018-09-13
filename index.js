@@ -73,10 +73,11 @@ app.post ('/greet', async function(req,res){
     let name = req.body.name;
     let lang = req.body.Language;
     
-    if (name == '' && lang == undefined){
+    if (name == '' || lang == undefined){
         
     req.flash('info', 'Please Enter name and Pick a language!');
     }
+
     res.render('home',{
         greeting: await greeter.greetMe(name,lang),
         counter: await greeter.counter()

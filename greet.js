@@ -33,7 +33,7 @@ module.exports = function (pool) {
     if (name && checkedLanguage === "Xhosa") {
       return "Molo " + name + ' <3';
     }
-    if (checkedLanguage === "Afrikaans") {
+    if (name && checkedLanguage === "Afrikaans") {
       return "Goeiedag " + name + ' <3';
     }
   }
