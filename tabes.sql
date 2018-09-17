@@ -6,6 +6,6 @@ create table users (
  counter int not null
 );
 
-insert into users (name, counter) values ('Luvuyo', 10);
-insert into users (name, counter) values ('Cobus', 60);
-insert into users (name, counter) values ('Johannes', 20);
+insert into users (name, counter) values ('luvuyo', 10);
+insert into users (name, counter) values ('cobus', 60);
+insert into users (name, counter) values ('johannes', 20);
