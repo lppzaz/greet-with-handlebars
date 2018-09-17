@@ -13,25 +13,39 @@ const pool = new Pool({
   connectionString,
   ssl: useSSL
 })
+beforeEach (async function () {
+  await pool.query('delete from users')
+})
 describe('Tests the functionality of my greetings app', function () {
   it('Checks counter does not count when no data is entered.', async function () {
     var greetingz = Greet(pool)
     assert.strictEqual(await greetingz.counter(), 0)
   })
 })
+beforeEach (async function () {
+  await pool.query('delete from users')
+})
 describe('Tests the functionality of my greetings app', function () {
   it('Checks user name (Cobus) and greets me in (English)', async function () {
     var greetingz = Greet(pool)
     assert.strictEqual(await greetingz.greetMe('cobus', 'English'), 'Howdy cobus <3')
+    
   })
 })
-
+beforeEach (async function () {
+  await pool.query('delete from users')
+})
 describe('Tests the functionality of my greetings app', function () {
   it('Checks if counter is working', async function () {
     var greetingz = Greet(pool)
-    await greetingz.counter('cobus', 'Xhosa')
-    assert.strictEqual(await greetingz.counter(), 1)
+    await greetingz.greetMe('cobus', 'Xhosa')
+    await greetingz.greetMe('Jon', 'Xhosa')
+    await greetingz.greetMe('James', 'Xhosa')
+    assert.strictEqual(await greetingz.counter(), 3)
   })
+})
+beforeEach (async function () {
+  await pool.query('delete from users')
 })
 
 describe('Tests the functionality of my greetings app', function () {
