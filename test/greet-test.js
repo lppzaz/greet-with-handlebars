@@ -13,15 +13,18 @@ const pool = new Pool({
   connectionString,
   ssl: useSSL
 })
+
 beforeEach (async function () {
   await pool.query('delete from users')
 })
+
 describe('Tests the functionality of my greetings app', function () {
   it('Checks counter does not count when no data is entered.', async function () {
     var greetingz = Greet(pool)
     assert.strictEqual(await greetingz.counter(), 0)
   })
 })
+
 beforeEach (async function () {
   await pool.query('delete from users')
 })
