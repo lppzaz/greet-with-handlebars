@@ -4,7 +4,7 @@ const exphbs = require('express-handlebars')
 const pg = require('pg')
 const bodyParser = require('body-parser')
 const app = express()
-const greetMe = require('./greet')
+const Greeter = require('./greet')
 const flash = require('express-flash')
 const session = require('express-session')
 const PORT = process.env.PORT || 3100
@@ -52,7 +52,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 
-const greeter = greetMe(pool)
+const greeter = Greeter(pool)
 
 // home route
 app.get('/', async function (req, res) {

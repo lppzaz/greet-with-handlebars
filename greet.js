@@ -38,8 +38,7 @@ module.exports = function (pool) {
   return {
     greetMe,
     counter,
-    nameMap,
-    clear
-
+    clear,
+    nameMap
   }
 }
