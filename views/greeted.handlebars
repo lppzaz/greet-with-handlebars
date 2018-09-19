@@ -1,6 +1,6 @@
 {{#each greetingz}}
- <div>
-  <p>{{name}} has been greeted {{counter}} times.</p>
- </div>
+ <p>
+  <a href="/greeted/{{name}}">{{name}}</a>
+ </p>
 {{/each}}
 <button class="button-primary resetBtn" name="button" onclick="main()">Back to Home</button>
