@@ -11,12 +11,7 @@ const PORT = process.env.PORT || 3100;
 
 app.use(express.static('public'));
 app.engine('handlebars', exphbs({
-    defaultLayout: 'main',
-    helpers: {
-    // 'formattedDate': function () {
-    //     return moment(this.billTime).fromNow();
-    // }
-    }
+    defaultLayout: 'main'
 }));
 app.use(session({
     secret: '<add a secret string here>',
@@ -25,15 +20,20 @@ app.use(session({
 }));
 
 // initialise the flash middleware
+
 app.use(flash());
+
 //  set up database requirements
+
 const Pool = pg.Pool;
 let useSSL = false;
 if (process.env.DATABASE_URL) {
     useSSL = true;
 }
 const connectionString = process.env.DATABASE_URL || 'postresql://cobus:cobus123@localhost:5432/greetings';
+
 // triggering database request actions(open connection to db)
+
 const pool = new Pool({
 
     connectionString,
@@ -55,6 +55,7 @@ app.use(bodyParser.json());
 const greeter = Greeter(pool);
 
 // home route
+
 app.get('/', async function (req, res, next) {
     try {
         var context = {
@@ -68,6 +69,7 @@ app.get('/', async function (req, res, next) {
 });
 
 // greet route
+
 app.post('/greet', async function (req, res) {
     let name = req.body.name;
     let lang = req.body.Language;
@@ -102,10 +104,13 @@ app.get('/greetingz', async function (req, res) {
         console.log(err.stack);
     }
 });
+
+// made seperate path for seeing how many times greeted.
 app.get('/greeted/:username', async function (req, res) {
-    var user = req.params.username;   
+    var user = req.params.username;
     res.render('greetCount', await greeter.getUser(user));
 });
+
 app.listen(PORT, function () {
     console.log('INITIATING LAUNCH SEQUENCE IN 3,2,1 ON LOCAL PORT', PORT);
 });
